@@ -24,7 +24,7 @@ count=6
 for i in `seq 1 $count`
 do
 echo $v > /sys/class/gpio/gpio21/value
-usleep 500000
+usleep 200000
 
 # change value of v
 if [ $v = 1 ]; then
