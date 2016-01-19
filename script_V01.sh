@@ -9,7 +9,7 @@ while [ true ]
 do
 echo "phase2 ok"
 # key detection
-if [ -f "/dev/sda1" ]; then
+if [ -b "/dev/sda1" ]; then
 echo "phase3 ok"
 # mount key
 mkdir /mnt/sda1
