@@ -7,26 +7,26 @@ cd gpio21
 echo out > direction
 
 # check loop
-while true
+while [ true ]
 do
 
 # key detection
-if [ -d "/dev/sda1"]; then
+if [ -d "/dev/sda1" ]; then
 
-# montage cle
+# mount key
 mkdir /mnt/sda1
 mount /dev/sda1 /mnt/sda1 
 
-# demontage
+# unmount key
 umount /dev/sda1
 
-# clignotement
+# blink
 v=1
 count=3
 for i in `seq 1 $count`
 do
-    echo $v > value
-    sleep 1s
+echo $v > value
+sleep 1s
 
 # change value of v
 if [ $v = 1 ]; then
@@ -36,7 +36,5 @@ v=1
 fi
 
 done
-
 fi
-
 done
