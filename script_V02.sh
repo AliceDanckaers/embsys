@@ -31,6 +31,10 @@ do
 		mount /dev/sda1 /mnt/sda1 
 		echo "USB Key is ready to be used"
 
+		# unmount key
+		umount /dev/sda1
+		echo "You can unplug your USB key safely"
+
 		# blink rapidly
 		v=1
 		count=6
@@ -46,9 +50,6 @@ do
 			fi
 		done
 
-		# unmount key
-		umount /dev/sda1
-		echo "You can unplug your USB key safely"
 
 	fi
 	sleep 5
