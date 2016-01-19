@@ -1,7 +1,7 @@
 #! /bin/sh
 
 #preparation to blink
-if ![ -d "/sys/class/gpio/gpio21" ]; then echo 21 > /sys/class/gpio/export; fi
+if ! [ -d "/sys/class/gpio/gpio21" ]; then echo 21 > /sys/class/gpio/export; fi
 echo out > /sys/class/gpio/gpio21/direction
 
 # check loop
@@ -28,7 +28,7 @@ do
 	if [ -b "/dev/sda1" ]; then
 
 		# mount key
-		if ![ -d "/mnt/sda1" ]; then mkdir /mnt/sda1; fi
+		if ! [ -d "/mnt/sda1" ]; then mkdir /mnt/sda1; fi
 		mount /dev/sda1 /mnt/sda1 
 		echo "USB Key is ready to be used"
 
