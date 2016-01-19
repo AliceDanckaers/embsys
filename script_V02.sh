@@ -15,6 +15,14 @@ for i in `seq 1 $count`
 do
 echo $v > /sys/class/gpio/gpio21/value
 usleep 500000
+# change value of v
+if [ $v = 1 ]; then
+v=0
+else
+v=1
+fi
+
+done
 
 # key detection
 if [ -b "/dev/sda1" ]; then
@@ -31,11 +39,6 @@ for i in `seq 1 $count`
 do
 echo $v > /sys/class/gpio/gpio21/value
 usleep 100000
-
-# unmount key
-umount /dev/sda1
-echo "You can unplug your USB key safely"
-
 # change value of v
 if [ $v = 1 ]; then
 v=0
@@ -44,6 +47,14 @@ v=1
 fi
 
 done
+
+# unmount key
+umount /dev/sda1
+echo "You can unplug your USB key safely"
+
+
+
+
 fi
 sleep 5
 done
