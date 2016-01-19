@@ -24,7 +24,7 @@ count=3
 for i in `seq 1 $count`
 do
 echo $v > /sys/class/gpio/gpio21/value
-sleep 1s
+sleep 1
 echo "phase6 ok"
 # change value of v
 if [ $v = 1 ]; then
@@ -35,5 +35,5 @@ fi
 
 done
 fi
-sleep 5s
+sleep 5
 done
