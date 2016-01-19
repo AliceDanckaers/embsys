@@ -12,7 +12,7 @@ do
 if [ -b "/dev/sda1" ]; then
 
 # mount key
-mkdir /mnt/sda1
+if ![ -d "/mnt/sda1"]; then mkdir /mnt/sda1; fi
 mount /dev/sda1 /mnt/sda1 
 echo "USB Key is ready to be used"
 # unmount key
