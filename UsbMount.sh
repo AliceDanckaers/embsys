@@ -30,7 +30,8 @@ do
 		if ! [ -d "/mnt/sda1" ]; then mkdir /mnt/sda1; fi
 		mount /dev/sda1 /mnt/sda1 
 		echo "USB Key is ready to be used"
-
+		# XORencryption
+		/root/encryption
 		# unmount key
 		umount /dev/sda1
 		echo "You can unplug your USB key safely"
