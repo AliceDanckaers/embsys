@@ -9,7 +9,7 @@ while [ true ]
 do
 echo "phase2 ok"
 # key detection
-if [ -d "/dev/sda1" ]; then
+if [ -f "/dev/sda1" ]; then
 echo "phase3 ok"
 # mount key
 mkdir /mnt/sda1
@@ -35,4 +35,5 @@ fi
 
 done
 fi
+sleep 5s
 done
