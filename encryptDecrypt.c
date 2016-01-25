@@ -57,10 +57,6 @@ int encryptFile(char* input,char* output){
 	{
 		free(lineIn);
 	}
-
-       	exit(EXIT_SUCCESS);
-
-
 }
 
 int main (int argc, char *argv[]) {
