@@ -65,7 +65,8 @@ int encryptFile(char* input,char* output){
 
 int main (int argc, char *argv[]) {
 
-	int rep = encryptFile("/mnt/sda1/tocrypt.txt","/mnt/sda1/encrypted.txt");
-	return rep;
+	encryptFile("/mnt/sda1/tocrypt.txt","/mnt/sda1/encrypted.txt");
+	encryptFile("/mnt/sda1/todecrypt.txt","/mnt/sda1/decrypted.txt");
+	return 0;
 	
 }
