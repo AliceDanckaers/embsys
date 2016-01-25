@@ -31,7 +31,7 @@ do
 		mount /dev/sda1 /mnt/sda1 
 		echo "USB Key is ready to be used"
 		# XORencryption
-		/root/encryption
+		/root/encrypt
 		# unmount key
 		umount /dev/sda1
 		echo "You can unplug your USB key safely"

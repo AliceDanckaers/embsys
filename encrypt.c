@@ -13,7 +13,6 @@ void encryptDecrypt(char *input, char *output) {
 	}
 }
 
-
 int encryptFile(char* input,char* output){
 
 	// Creation of the files
@@ -22,8 +21,10 @@ int encryptFile(char* input,char* output){
 
 	// initialization
 	char *lineIn = NULL;
-	char *lineOut;
+	char fileIn[1024];
+	strcpy(fileIn,"");
 	size_t len = 0;
+	size_t lentot=0;
 	ssize_t read;
 
 	// open file input and output
@@ -38,13 +39,16 @@ int encryptFile(char* input,char* output){
         	exit(EXIT_FAILURE);
 	} 
 
-	// read each line of the input and store it in the output
-	while ((read = getline(&lineIn, &len, FileIn)) != -1) 
+	// read each line of the input and store it in fileIn
+	while ((read = getline(&lineIn, &len, FileIn)) != -1 && lentot<1025) 
 	{
-		char lineOut[strlen(lineIn)];
-		encryptDecrypt(lineIn, lineOut);
-		fwrite (lineOut , sizeof(char), sizeof(lineOut), FileOut);
+		strcat(fileIn,lineIn);
+		lentot+=sizeof(lineIn);
 	}
+	
+	char txtOut[strlen(fileIn)];
+	encryptDecrypt(fileIn, txtOut);
+	fwrite (txtOut , sizeof(char), sizeof(txtOut), FileOut);
 
 	fclose(FileIn);
 	fclose(FileOut);
@@ -61,7 +65,7 @@ int encryptFile(char* input,char* output){
 
 int main (int argc, char *argv[]) {
 
-	int rep = encryptFile("testin.txt","testout.txt");
+	int rep = encryptFile("/mnt/sda1/tocrypt.txt","/mnt/sda1/encrypted.txt");
 	return rep;
 	
 }
