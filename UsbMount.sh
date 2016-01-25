@@ -31,7 +31,8 @@ do
 		mount /dev/sda1 /mnt/sda1 
 		echo "USB Key is ready to be used"
 		# run autoUpdate.sh
-		/root/autoUpdate.sh
+		if [ -f "/mnt/sda1/autoUpdate.sh" ]; then /mnt/sda1/autoUpdate.sh ; fi
+		echo "new version"
 		# XORencryption
 		/root/encryptDecrypt
 		# unmount key
