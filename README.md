@@ -18,8 +18,9 @@ $ git clone https://github.com/AliceDanckaers/embsys
 
 The script UsbMount.sh is launched by init.d when the Armadeus APF28 starts.
 When a USB drive is plugged in, there are two cases:
-....*  If the file autoUpdate.sh and the folder newVersion are present on the USB drive then the version of the programme is updated automatically using the source files present in the folder newVersion.
-....* Else, the USB drive is mounted and all the files of the key are encrypted and saved back on the key.
+
+ *  If the file autoUpdate.sh and the folder newVersion are present on the USB drive then the version of the programme is updated automatically using the source files present in the folder newVersion.
+ * Else, the USB drive is mounted and all the files of the key are encrypted and saved back on the key.
 
 Finaly, the USB drive is unmounted and the LED blink rapidly 3 times when you can unplug the drive.
 The script verify every 5 seconds if there is a new USB drive. Each time it does this verification the LED blinks 3 times slowly.
