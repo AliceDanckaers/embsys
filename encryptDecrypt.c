@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <sys/types.h>
+#include <dirent.h>
 
 void encryptDecrypt(char *input, char *output) {
 	char key[] = {'K', 'C', 'Q'}; //Can be any chars, and any size array
@@ -13,7 +14,8 @@ void encryptDecrypt(char *input, char *output) {
 	}
 }
 
-int encryptFile(char* input,char* output){
+
+void encryptFile(char* input,char* output){
 
 	// Creation of the files
 	FILE *FileIn;
@@ -30,12 +32,14 @@ int encryptFile(char* input,char* output){
 	// open file input and output
 	FileIn = fopen(input,"r+");
 	if(FileIn == NULL)
-	{
+	{	
+		fprintf(stderr,"problème pour le fichier d'entrée");
         	exit(EXIT_FAILURE);
 	} 
 	FileOut = fopen(output,"w+");
 	if(FileOut == NULL)
 	{
+		fprintf(stderr,"problème pour le fichier de sortie");
         	exit(EXIT_FAILURE);
 	} 
 
@@ -57,12 +61,48 @@ int encryptFile(char* input,char* output){
 	{
 		free(lineIn);
 	}
+
+
+
 }
 
-int main (int argc, char *argv[]) {
 
-	encryptFile("/mnt/sda1/tocrypt.txt","/mnt/sda1/encrypted.txt");
-	encryptFile("/mnt/sda1/todecrypt.txt","/mnt/sda1/decrypted.txt");
-	return 0;
-	
+int main()
+{
+	struct dirent *lecture;
+	DIR *rep;
+	char* nomDos = "/mnt/sda1/";
+	printf("je me place dans le dossier /mnt/sda1/");
+	rep = opendir(nomDos);
+	int i=0;
+	int ret;
+	char *tabFile[1024];
+	while ((lecture = readdir(rep))) 
+	{
+		char* nom = lecture->d_name;
+		printf("%s\n", lecture->d_name);   
+		if(strcmp(lecture->d_name,".")!=0 && strcmp(lecture->d_name,"..")!=0){
+		tabFile[i] = malloc (strlen (nom) + 1);
+		strcpy (tabFile[i], nom);
+		i++;
+		}
+	}
+	int comp = 0;
+
+	printf("\n\n\n");  	
+	while (comp<i) 
+	{
+			char* nom2 = malloc (2048);
+			strcpy(nom2,nomDos);
+			strcat(nom2,tabFile[comp]);
+			printf("%s\n", nom2);
+			char* tmp="tmp.txt";
+			encryptFile(nom2,tmp);
+	   		ret = remove(nom2);
+	   		ret = rename(tmp, nom2);
+			printf("%s traite\n", nom2);
+		comp++;
+	}
+
+	closedir(rep);
 }
